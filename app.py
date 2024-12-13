@@ -30,8 +30,10 @@ def summary():
         arxivscrape.scrape(topic)
         df = pd.read_csv("Scrape.csv")
         titles = []
+        inputs=[]
         for i in range(min(3, len(df))):  # Ensure index is within range
             titles.append(df.iloc[i, 0])
+            inputs.append(df.iloc[i, 3])
         csv_file = "OnlyURL.csv"
         base_filename = "NewPdf"
         target_folder = "OnlyPDFs"
@@ -41,20 +43,20 @@ def summary():
         # Ensure the text directory exists
         os.makedirs('text', exist_ok=True)
 
-        for i in range(min(3, len(df))):  # Ensure index is within range
-            pdfscrape(f'{base_filename}{i}')
+        # for i in range(min(3, len(df))):  # Ensure index is within range
+        #     pdfscrape(f'{base_filename}{i}')
             
-            keytakeaways.append(lexrank(f'text/{base_filename}{i}.txt'))
+        #     keytakeaways.append(lexrank(f'text/{base_filename}{i}.txt'))
 
-        current_dateTime = datetime.now()
-        inputs = []
-        for i in range(min(3, len(df))):  # Ensure index is within range
-            print(current_dateTime)
-            preprocess_sum(f'text/{base_filename}{i}.txt')
-            newInput = get_summary(f'KeyTakeaway/clean_sum.txt')
-            inputs.append(newInput)
-            current_dateTime = datetime.now()
-            print(current_dateTime)
+        # current_dateTime = datetime.now()
+        # inputs = []
+        # for i in range(min(3, len(df))):  # Ensure index is within range
+        #     print(current_dateTime)
+        #     preprocess_sum(f'text/{base_filename}{i}.txt')
+        #     newInput = get_summary(f'KeyTakeaway/clean_sum.txt')
+        #     inputs.append(newInput)
+        #     current_dateTime = datetime.now()
+        #     print(current_dateTime)
     return render_template("summary.html", titles=titles, inputs=inputs)
 
 @app.route("/keytakeaway")
