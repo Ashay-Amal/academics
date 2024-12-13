@@ -1,4 +1,5 @@
 import re
+import os
 
 def preprocess(filename):
     f = open(filename, 'r', encoding='utf-8')
@@ -17,6 +18,7 @@ def preprocess(filename):
             # cleaned_data = re.sub(r"[^\w\s]", "", cleaned_data)
             cleaned_data = re.sub(r'-\s+', '', cleaned_data)
 
+    os.makedirs('KeyTakeaway', exist_ok=True)  # Ensure the directory exists
     with open("KeyTakeaway/cleanTest.txt", 'w', encoding='utf-8') as f:
         f.write(cleaned_data)
 
@@ -34,5 +36,6 @@ def preprocess_sum(filename):
             # cleaned_data = re.sub(r"[^\w\s]", "", cleaned_data)
             cleaned_data = re.sub(r'-\s+', '', cleaned_data)
 
+    os.makedirs('KeyTakeaway', exist_ok=True)  # Ensure the directory exists
     with open(f"KeyTakeaway/clean_sum.txt", 'w', encoding='utf-8') as f:
         f.write(cleaned_data)
