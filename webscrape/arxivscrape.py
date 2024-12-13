@@ -10,7 +10,7 @@ def scrape(topic):
   
   refined_topic = f"cat:cs* AND ti:{topic}"
   print(refined_topic)
-  num = 3
+  num = 10
   search = arxiv.Search(
     query = f"cat:cs* AND ti:{topic}",
     # query = refined_topic,

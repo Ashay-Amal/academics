@@ -31,7 +31,7 @@ def summary():
         df = pd.read_csv("Scrape.csv")
         titles = []
         inputs=[]
-        for i in range(min(3, len(df))):  # Ensure index is within range
+        for i in range(min(10, len(df))):  # Ensure index is within range
             titles.append(df.iloc[i, 0])
             inputs.append(df.iloc[i, 3])
         csv_file = "OnlyURL.csv"
